@@ -23,9 +23,9 @@ const Home = () => {
             >
               <span>{item.name}</span>
               <div className="d-flex gap-3">
-                <Cart time=" 09:00-12:00" />
-                <Cart time=" 12:00-03:00" />
-                <Cart time=" 03:00-06:00" />
+                <Cart time=" 09:00-12:00" theaterName={item.name} />
+                <Cart time=" 12:00-03:00" theaterName={item.name} />
+                <Cart time=" 03:00-06:00" theaterName={item.name} />
                 {/* <button
                   className="btn btn-primary"
                   onClick={(e) => handleTime(e)}
