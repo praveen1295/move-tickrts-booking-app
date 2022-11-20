@@ -34,7 +34,7 @@ const BookingSummary = () => {
               </div>
               <div className="d-flex justify-content-between">
                 <span>Convenience Fees</span>
-                <span>{showDetail.convenienceFee}</span>
+                <span>{showDetail.convenienceFee}.00</span>
               </div>
               <div
                 className="d-flex justify-content-between p-2"
@@ -42,7 +42,7 @@ const BookingSummary = () => {
               >
                 <span>Total</span>
                 <span>
-                  {showDetail.totalAmount + showDetail.convenienceFee}
+                  {showDetail.totalAmount + showDetail.convenienceFee}.00
                 </span>
               </div>
             </div>
