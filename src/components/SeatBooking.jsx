@@ -35,9 +35,21 @@ const SeatBooking = () => {
 
         if (char === "A") {
           setPrice((prev) => prev - SEATS.SEAT_PRICE.PLATINUM);
-        } else if (char === "B" || "C" || "D" || "E" || "F") {
+        } else if (
+          char === "B" ||
+          char === "C" ||
+          char === "D" ||
+          char === "E" ||
+          char === "F"
+        ) {
           setPrice((prev) => prev - SEATS.SEAT_PRICE.GOLD);
-        } else if (char === "G" || "H" || "I" || "J" || "K") {
+        } else if (
+          char === "G" ||
+          char === "H" ||
+          char === "I" ||
+          char === "J" ||
+          char === "K"
+        ) {
           setPrice((prev) => prev - SEATS.SEAT_PRICE.SILVER);
         } else {
           setPrice((prev) => prev - SEATS.SEAT_PRICE.CLUB);
@@ -58,10 +70,22 @@ const SeatBooking = () => {
     if (char === "A") {
       seatType = "PLATINUM";
       setPrice((prev) => prev + SEATS.SEAT_PRICE.PLATINUM);
-    } else if (char === "B" || "C" || "D" || "E" || "F") {
+    } else if (
+      char === "B" ||
+      char === "C" ||
+      char === "D" ||
+      char === "E" ||
+      char === "F"
+    ) {
       seatType = "GOLD";
       setPrice((prev) => prev + SEATS.SEAT_PRICE.GOLD);
-    } else if (char === "G" || "H" || "I" || "J" || "K") {
+    } else if (
+      char === "G" ||
+      char === "H" ||
+      char === "I" ||
+      char === "J" ||
+      char === "K"
+    ) {
       seatType = "SILVER";
       setPrice((prev) => prev + SEATS.SEAT_PRICE.SILVER);
     } else {
@@ -126,7 +150,7 @@ const SeatBooking = () => {
 
       {seatDetail.map((item, idx) => {
         return (
-          <div className="">
+          <div key={idx} className="">
             {idx === 0 && (
               <>
                 <h6>PLATINUM- Rs. 250</h6>
@@ -135,7 +159,7 @@ const SeatBooking = () => {
             )}
             {idx === 1 && (
               <>
-                <h6>GOLD- Rs. 170</h6>
+                <h6>GOLD- Rs. 200</h6>
                 <hr />
               </>
             )}
@@ -162,10 +186,10 @@ const SeatBooking = () => {
                     {data.row}
                   </div>
                   <div className="d-flex gap-5">
-                    <div div className="">
+                    <div div className="d-flex">
                       {data.seats.map((seat, index) => {
                         return (
-                          <>
+                          <div key={index}>
                             {index < 7 && (
                               <SingleSeat
                                 seat={seat}
@@ -174,15 +198,15 @@ const SeatBooking = () => {
                                 handleSeatClick={handleSeatClick}
                               />
                             )}
-                          </>
+                          </div>
                         );
                       })}
                     </div>
 
-                    <div className="">
+                    <div className="d-flex">
                       {data.seats.map((seat, index) => {
                         return (
-                          <>
+                          <div key={index}>
                             {index >= 7 && (
                               <SingleSeat
                                 seat={seat}
@@ -191,7 +215,7 @@ const SeatBooking = () => {
                                 handleSeatClick={handleSeatClick}
                               />
                             )}
-                          </>
+                          </div>
                         );
                       })}
                     </div>

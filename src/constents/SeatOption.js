@@ -2,10 +2,10 @@ const SEATS = {
   SEAT_TYPE: [
     { type: "CLUB", price: 150 },
     { type: "SILVER", price: 170 },
-    { type: "GOLD", price: 170 },
+    { type: "GOLD", price: 200 },
     { type: "PLATINUM", price: 250 },
   ],
-  SEAT_PRICE: { CLUB: 150, SILVER: 170, GOLD: 170, PLATINUM: 250 },
+  SEAT_PRICE: { CLUB: 150, SILVER: 170, GOLD: 200, PLATINUM: 250 },
   MAX_SEAT_ALLOWED: 10,
   SEAT_STRUCTURE: {
     PLATINUM: [
