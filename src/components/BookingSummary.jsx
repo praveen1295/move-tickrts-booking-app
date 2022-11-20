@@ -23,7 +23,11 @@ const BookingSummary = () => {
                 <span>
                   {showDetail.seatType}:{" "}
                   {showDetail.seatNo.map((seat, idx) => {
-                    return <span key={idx}>{seat},</span>;
+                    return (
+                      <span span key={idx}>
+                        {seat},
+                      </span>
+                    );
                   })}
                 </span>
                 <span>{showDetail.totalAmount}.00</span>

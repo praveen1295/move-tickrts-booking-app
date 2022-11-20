@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import movieContext from "../features/movieContext";
 import SEAT from "../constents/SeatOption";
 
-const Cart = ({ time, theaterName }) => {
+const Cart = ({ time, theaterName, movieName }) => {
   const navigate = useNavigate();
   const { showDetail, setShowDetail } = useContext(movieContext);
-  const seats = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [noOfSeat, setNoOfSeat] = useState(false);
+  const seats = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-  const [activeSeat, setActiveSeat] = useState(false);
   const numberOfSeat = (e) => {
-    // console.log(e.target.innerHTML);
+    setNoOfSeat(true);
     setShowDetail({
       ...showDetail,
       totalSelectedSeat: e.target.innerHTML,
@@ -18,17 +18,26 @@ const Cart = ({ time, theaterName }) => {
     });
   };
   const handleShowTime = () => {
-    setShowDetail({ ...showDetail, theaterName: { theaterName } });
+    setShowDetail({
+      ...showDetail,
+      theaterName: { theaterName },
+      movieName: movieName,
+    });
   };
   const selectSeat = () => {
+    if (!noOfSeat) {
+      alert("Please select number of seats...");
+      return;
+    }
     navigate("/seatBooking");
+    setNoOfSeat(false);
   };
   return (
     <div>
       {/* <!-- Button trigger modal --> */}
       <button
         type="button"
-        class="btn btn-primary"
+        className="btn btn-primary"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
         onClick={handleShowTime}
@@ -38,36 +47,44 @@ const Cart = ({ time, theaterName }) => {
 
       {/* <!-- Modal --> */}
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
                 How Many Seats?
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
+            <div className="modal-body">
               <div className="d-flex justify-content-around">
                 {seats.map((seat, idx) => {
                   return (
-                    <div
-                      //   className="radio cursor-pointer"
-                      style={{ cursor: "pointer" }}
-                      key={idx}
-                      onClick={(e) => numberOfSeat(e)}
-                    >
-                      {seat}
+                    <div key={idx}>
+                      <input
+                        type="radio"
+                        className="btn-check"
+                        name="options-outlined"
+                        id={idx}
+                        autocomplete="off"
+                      />
+                      <label
+                        className="btn btn-outline-success"
+                        htmlFor={idx}
+                        onClick={(e) => numberOfSeat(e)}
+                      >
+                        {seat}
+                      </label>
                     </div>
                   );
                 })}
@@ -77,19 +94,37 @@ const Cart = ({ time, theaterName }) => {
               <div className="d-flex justify-content-around">
                 {SEAT.SEAT_TYPE.map((seat, idx) => {
                   return (
-                    <div key={idx} className="text-center">
-                      <div className="text-secondary">{seat.type}</div>
+                    <div
+                      key={idx}
+                      className="text-center d-flex flex-column align-items-center"
+                    >
+                      <div className="text-secondary small">{seat.type}</div>
                       <div className="text-dark">Rs. {seat.price}</div>
-                      <div>{"Available"}</div>
+                      {showDetail.totalSelectedSeat <=
+                      showDetail.selectedSeat[seat.type].available ? (
+                        <small
+                          className="text-info"
+                          style={{ fontSize: "12px" }}
+                        >
+                          Available
+                        </small>
+                      ) : (
+                        <small
+                          className="text-danger"
+                          style={{ fontSize: "12px" }}
+                        >
+                          Not Available
+                        </small>
+                      )}
                     </div>
                   );
                 })}
               </div>
             </div>
-            <div class="modal-footer">
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
@@ -97,7 +132,7 @@ const Cart = ({ time, theaterName }) => {
               <button
                 onClick={selectSeat}
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 data-bs-dismiss="modal"
               >
                 SELECT SEAT
