@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import SEATS from "../constents/SeatOption";
 import movieContext from "../features/movieContext";
 import SingleSeat from "./SingleSeat";
 import "../App.css";
 
 const SeatBooking = () => {
+  const navigate = useNavigate();
   const { showDetail, setShowDetail } = useContext(movieContext);
   // eslint-disable-next-line
   const [seat, setSeat] = useState({ ...SEATS.SEAT_STRUCTURE });
@@ -19,6 +20,14 @@ const SeatBooking = () => {
       return items.seat;
     });
     setSeatDetail(arr);
+  };
+
+  const updatePrice = () => {
+    setShowDetail({
+      ...showDetail,
+      totalAmount: price,
+    });
+    navigate("/summary");
   };
 
   const handleSeatClick = (e, flag, setFlag) => {
@@ -94,7 +103,7 @@ const SeatBooking = () => {
     }
     setShowDetail({
       ...showDetail,
-      totalAmount: price,
+      // totalAmount: price,
       seatNo: [...showDetail.seatNo, seat],
       seatType: seatType,
     });
@@ -232,9 +241,9 @@ const SeatBooking = () => {
         style={{ width: "100%" }}
       >
         <div className="w-50 shadow p-3 mb-5 bg-body rounded"></div>
-        <Link className="btn btn-info" to={"/summary"}>
+        <button className="btn btn-info" onClick={updatePrice}>
           Pay Rs. - {price}
-        </Link>
+        </button>
       </div>
     </div>
   );
