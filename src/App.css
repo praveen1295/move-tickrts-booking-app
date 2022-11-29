@@ -1,3 +1,10 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .App {
   text-align: center;
 }
@@ -5,12 +12,6 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
 }
 
 .App-header {
@@ -87,4 +88,65 @@ ul.dropdown-cart li .item-right {
 }
 ul.dropdown-cart li .item-right button {
   margin-top: 14px;
+}
+
+/* tv maiz ------------------------------------------------- */
+
+body {
+  background-color: rgb(37, 36, 36);
+  color: white;
+}
+
+.App {
+  text-align: center;
+}
+
+.searchBox {
+  line-height: 0.5px;
+}
+.searchBox p {
+  font-size: 14px;
+  color: brown;
+}
+
+.searchBox input {
+  padding: 10px;
+  width: 50%;
+  border-radius: 5px;
+  border: 2px solid rgb(80, 63, 31);
+  background-color: rgb(15, 26, 41);
+  color: white;
+}
+#details {
+  display: flex;
+  gap: 20px;
+  position: fixed;
+  top: 50px;
+  left: 5vw;
+  flex-wrap: wrap;
+  padding: 10px;
+  width: 90vw;
+  margin: 10px;
+  color: rgb(245, 238, 238);
+  background: rgb(107, 2, 90);
+  border-radius: 20px;
+  text-align: start;
+  z-index: 100;
+}
+details,
+.readMore {
+  cursor: pointer;
+  color: rgb(250, 14, 33);
+  font-weight: 700;
+  text-decoration: none;
+}
+.cancel {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.col-md-3 img {
+  width: 210px;
+  height: 295px;
 }

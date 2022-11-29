@@ -1,23 +1,27 @@
 [
     {
       "movieName": "Bramhastra",
-      "theaterName": [
-        "INOX, Sapna sangita Mall",
-        "Rigal ceneplex",
-        "PVR Cenema",
-        "Ashima Ceneplex",
-        "Sangam Ceneplex"
-      ]
+      "theaterName":"INOX, Sapna sangita Mall",
+      "times":["09am:12:00pm","09am:12:00pm", "09am:12:00pm"]
     },
     {
-      "movieName": "Bahubali",
-      "theaterName": [
-        "INOX, Sapna sangita Mall",
-        "Rigal ceneplex",
-        "PVR Cenema",
-        "Ashima Ceneplex",
-        "Sangam Ceneplex"
-      ],
-      "showTime": []
+      "movieName": "Bramhastra",
+      "theaterName":"Rigal ceneplex",  
+      "times":["09am:12:00pm","09am:12:00pm", "09am:12:00pm"]
+    },
+    {
+      "movieName": "Bramhastra",
+      "theaterName":"PVR Cenema",
+      "times":["09am:12:00pm","09am:12:00pm", "09am:12:00pm"]
+    },
+    {
+      "movieName": "Bramhastra",
+      "theaterName":"Ashima Ceneplex",
+      "times":["09am:12:00pm","09am:12:00pm", "09am:12:00pm"]
+    },
+    {
+      "movieName": "Bramhastra",
+      "theaterName":"Sangam Ceneplex",
+      "times":["09am:12:00pm","09am:12:00pm", "09am:12:00pm"]
     }
   ]

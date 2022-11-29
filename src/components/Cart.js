@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import movieContext from "../features/movieContext";
+import movieContext from "../features/contexts/movieContext";
 import SEAT from "../constents/SeatOption";
 
 const Cart = ({ time, theaterName, movieName }) => {
@@ -21,7 +21,7 @@ const Cart = ({ time, theaterName, movieName }) => {
     setShowDetail({
       ...showDetail,
       theaterName: { theaterName },
-      movieName: movieName,
+      // movieName: movieName,
     });
   };
   const selectSeat = () => {

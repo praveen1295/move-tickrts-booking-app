@@ -1,16 +1,32 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
-import movieReducer from "./features/reducer";
-import movieContext from "./features/movieContext";
-import Home from "./components/Home";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+// import movieReducer from "./features/reducers/reducer";
+import movieContext from "./features/contexts/movieContext";
+import Time from "./components/Time";
+import TvMaze from "./components/tvMaze/TV_Maze";
 import BookingSummary from "./components/BookingSummary";
 import Thankyou from "./components/Thankyou";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import "./App.css";
+import userContext from "./features/contexts/userContext";
+import userReducer from "./features/reducers/reducer";
+import Login from "./components/Login";
+import Signup from "./components/Signup";
+import About from "./components/About";
 import SeatBooking from "./components/SeatBooking";
+import "./App.css";
 
 function App() {
-  const initialState = useContext(movieContext);
-  const [state, dispatch] = useReducer(movieReducer, initialState);
+  //login--------------------------
+  const initialState = useContext(userContext);
+  const [state, dispatch] = useReducer(userReducer, initialState);
+
+  const [flag, setFlag] = useState({ login: false, cart: false });
+  const [dataList, setDataList] = useState({ data: [], filterData: [] });
+  const [currentUser, setCurrentUser] = useState({});
+  // eslint-disable-next-line
+  const [alert, setAlert] = useState(null);
+  //------------------------------------------------------------------------------------------------------
+
   const [movieData, setMovieData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -20,6 +36,16 @@ function App() {
     const data = await response.json();
     setLoading(false);
     setMovieData(data);
+  };
+
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
   };
 
   useEffect(() => {
@@ -45,26 +71,46 @@ function App() {
     bookedSeat: ["A-10", "A-11", "A-12", "K-4", "K-2", "K-3"],
   });
   return (
-    <div>
-      <movieContext.Provider
+    <div className="App">
+      <userContext.Provider
         value={{
           state,
           dispatch,
-          movieData,
-          showDetail,
-          loading,
-          setShowDetail,
+          flag,
+          setFlag,
+          dataList,
+          setDataList,
+          currentUser,
+          setCurrentUser,
+          showAlert,
         }}
       >
-        <Router>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/seatBooking" element={<SeatBooking />} />
-            <Route path="/summary" element={<BookingSummary />} />
-            <Route path="/thankyou" element={<Thankyou />} />
-          </Routes>
-        </Router>
-      </movieContext.Provider>
+        <movieContext.Provider
+          value={{
+            state,
+            dispatch,
+            movieData,
+            setMovieData,
+            showDetail,
+            loading,
+            setShowDetail,
+          }}
+        >
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route exact path="/signup" element={<Signup />} />
+              <Route exact path="/login" element={<Login />} />
+              <Route exact path="/about" element={<About />} />
+              <Route exact path="/" element={<TvMaze />} />
+              <Route path="/selectTime" element={<Time />} />
+              <Route path="/seatBooking" element={<SeatBooking />} />
+              <Route path="/summary" element={<BookingSummary />} />
+              <Route path="/thankyou" element={<Thankyou />} />
+            </Routes>
+          </Router>
+        </movieContext.Provider>
+      </userContext.Provider>
     </div>
   );
 }

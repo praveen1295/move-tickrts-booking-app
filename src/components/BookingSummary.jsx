@@ -1,13 +1,13 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import movieContext from "../features/movieContext";
+import movieContext from "../features/contexts/movieContext";
 
 const BookingSummary = () => {
   const { showDetail } = useContext(movieContext);
   return (
     <div>
       <div
-        className="container d-flex align-items-center justify-content-center"
+        className="container d-flex align-items-center justify-content-center text-dark"
         style={{ height: "100vh" }}
       >
         <div className="w-50 p-3" style={{ backgroundColor: "#f7f2f2" }}>

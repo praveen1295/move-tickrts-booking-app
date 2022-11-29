@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import movieContext from "../features/movieContext";
+import movieContext from "../features/contexts/movieContext";
 
 const SingleSeat = ({ seat, data, index, handleSeatClick }) => {
   const { showDetail } = useContext(movieContext);

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import SEATS from "../constents/SeatOption";
-import movieContext from "../features/movieContext";
+import movieContext from "../features/contexts/movieContext";
 import SingleSeat from "./SingleSeat";
 import "../App.css";
 
