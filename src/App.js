@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useReducer, useContext } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Alert from "./components/Alert";
 import Navbar from "./components/Navbar";
 // import movieReducer from "./features/reducers/reducer";
 import movieContext from "./features/contexts/movieContext";
@@ -45,7 +46,7 @@ function App() {
     });
     setTimeout(() => {
       setAlert(null);
-    }, 1500);
+    }, 2000);
   };
 
   useEffect(() => {
@@ -98,6 +99,7 @@ function App() {
         >
           <Router>
             <Navbar />
+            <Alert alert={alert} />
             <Routes>
               <Route exact path="/signup" element={<Signup />} />
               <Route exact path="/login" element={<Login />} />
